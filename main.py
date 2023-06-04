@@ -452,14 +452,17 @@ while running:
             else:
                 if word_complete:
                     # Start typing a new word
-                    current_word = pygame.key.name(event.key)
+                    if event.key == pygame.K_RETURN or event.key == pygame.K_BACKSPACE:
+                        pass
+                    else:
+                        current_word = pygame.key.name(event.key)
                     word_complete = False
                 else:
                     # Continue typing the current word
-                    if event.key == pygame.K_LSHIFT or event.key == pygame.K_RSHIFT or event.key == pygame.K_BACKSPACE:
+                    if event.key == pygame.K_LSHIFT or event.key == pygame.K_RSHIFT:# or event.key == pygame.K_BACKSPACE:
                         pass
                     else:
-                        if event.key == pygame.K_RETURN and current_word != '':
+                        if event.key == pygame.K_BACKSPACE:# and current_word != '':
                             current_word = ''
                             for word in words:
                                 word["typed_letters"] = []
